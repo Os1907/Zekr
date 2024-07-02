@@ -5,28 +5,31 @@ import logo from '../../../../public/logo.png'
 import { IoMenu } from 'react-icons/io5'
 import { CgMenuLeft } from "react-icons/cg";
 import Link from 'next/link'
+import localFont  from  'next/font/local'
+const Quran = localFont({ src: '../../../../public/Fonts/alfont_com_AlFont_com_pdms-saleem-quranfont.ttf' })
+
 export default function Navbar() {
   const [Action, setAction] = useState(true)
   return (
-    <nav dir='rtl'  className=" lg:border-primary lg:border-b-2   mx-4 lg:mx-20 pt-2   ">
-  <div className="max-w-screen-xl flex    items-center justify-between py-1 gap-y-2 lg:py-4">
+    <nav dir='rtl' className={`${Quran.className}`} >
+  <div className="lg:mx-20 px-10 flex    items-center justify-between  gap-y-2 py-2 bg-off_white rounded-b-full ">
     <div className=' w-1/2 lg:w-auto flex '>
-      <Image src={logo} className="w-5 lg:w-8 mr-2  lg:mr-14" alt="Zekr Logo" width={350} height={350}/>
+      <Image src={logo} className="w-7 mr-2" alt="Zekr Logo" width={350} height={350}/>
 
     </div>
    <div>
-    <ul  className='hidden lg:flex  justify-between w-full lg:justify-center gap-x-4 text-primary off_white  font-ar font-bold  '>
-    <li className='cursor-pointer hover:bg-primary  hover:text-white transition-all hover:px-3 hover:rounded-full'>
+    <ul  className='hidden lg:flex  justify-between w-full lg:justify-center gap-x-4 text-primary off_white text-2xl   '>
+    <li className='cursor-pointer hover:bg-primary  hover:text-white transition-all hover:px-5 py-1 hover:rounded-lg'>
         <Link href={"/"}>
         الصفحة الرئيسية
 </Link>
       </li>
-      <li className='cursor-pointer hover:bg-primary  hover:text-white transition-all hover:px-3 hover:rounded-full'>
+      <li className='cursor-pointer hover:bg-primary  hover:text-white transition-all hover:px-5 py-1 hover:rounded-lg'>
         <Link href={"/Morning"}>
         أذكار الصباح
 </Link>
       </li>
-      <li className='cursor-pointer hover:bg-primary  hover:text-white transition-all hover:px-3 hover:rounded-full'>
+      <li className='cursor-pointer hover:bg-primary  hover:text-white transition-all hover:px-5 py-1 hover:rounded-lg'>
       <Link href={"/Evening"}>
         
         أذكار المساء
@@ -34,12 +37,15 @@ export default function Navbar() {
 
 
       </li>
-      <li className='cursor-pointer hover:bg-primary  hover:text-white transition-all hover:px-3 hover:rounded-full'>
-        
+      <li className='cursor-pointer hover:bg-primary  hover:text-white transition-all hover:px-5 py-1 hover:rounded-lg'>
+      
+      <Link href={"/ad3ia-quran"}>
+
         أدعية الأنبياء
+        </Link>
 
       </li>
-      <li className='cursor-pointer hover:bg-primary  hover:text-white transition-all hover:px-3 hover:rounded-full'>
+      <li className='cursor-pointer hover:bg-primary  hover:text-white transition-all hover:px-5 py-1 hover:rounded-lg'>
       القرآن الكريم
         
       </li>
@@ -52,23 +58,23 @@ export default function Navbar() {
    
   </div>
     {
-      Action ? null : <div className='lg:hidden bg-primary text-white  rounded-md transition-all  mb-5'>
+      Action ? null : <div className='lg:hidden bg-primary text-white  rounded-b-3xl mx-4 transition-all overflow-hidden  mb-5'>
 
     <ul className=' flex justify-center flex-col items-center gap-y-4 py-2 '>
-    <li   onClick={() => setAction(!Action)} className='cursor-pointer hover:bg-primary  hover:text-white transition-all hover:px-3 hover:rounded-full'>
+    <li   onClick={() => setAction(!Action)} className='cursor-pointer text-xl py-2   border-b border-off_white pb-2  hover:text-primary hover:bg-off_white transition-all px-3 hover:rounded-md hover:w-3/6 hover:text-center '>
         <Link href={"/"}>
         الصفحة الرئيسية
 </Link>
       </li>
             
-      <li className='cursor-pointer py-2   border-b border-off_white pb-2  hover:text-primary hover:bg-off_white transition-all px-3 hover:rounded-md'>
+      <li className='cursor-pointer text-xl py-2   border-b border-off_white pb-2  hover:text-primary hover:bg-off_white transition-all px-3 hover:rounded-md hover:w-3/6 hover:text-center '>
         
       <Link onClick={() => setAction(!Action)} href={"/Morning"}>
         أذكار الصباح
 </Link>
 
       </li>
-      <li className='cursor-pointer py-2  border-b border-off_white pb-2 hover:text-primary hover:bg-off_white transition-all px-3 hover:rounded-md'>
+      <li className='cursor-pointer text-xl py-2  border-b border-off_white pb-2 hover:text-primary hover:bg-off_white transition-all px-3 hover:rounded-md hover:w-3/6 hover:text-center '>
         
       <Link onClick={() => setAction(!Action)} href={"/Evening"}>
         
@@ -76,12 +82,15 @@ export default function Navbar() {
         </Link>
 
       </li>
-      <li className='cursor-pointer py-2  border-b border-off_white pb-2  hover:text-primary hover:bg-off_white transition-all px-3 hover:rounded-md'>
+      <li className='cursor-pointer text-xl py-2  border-b border-off_white pb-2  hover:text-primary hover:bg-off_white transition-all px-3 hover:rounded-md hover:w-3/6 hover:text-center '>
         
-        أدعية الأنبياء
+      <Link onClick={() => setAction(!Action)} href={"/ad3ia-quran"}>
+
+أدعية الأنبياء
+</Link>
 
       </li>
-      <li className='cursor-pointer py-2  hover:text-primary hover:bg-off_white transition-all px-3 hover:rounded-md'>
+      <li className='cursor-pointer text-xl py-2  hover:text-primary hover:bg-off_white transition-all px-3 hover:rounded-md hover:w-3/6 hover:text-center '>
       القرآن الكريم
         
       </li>

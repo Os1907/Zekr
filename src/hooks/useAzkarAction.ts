@@ -11,18 +11,20 @@ export const useAzkarIndex = (data: Zekr[]) => {
   const count = useSelector((state: RootState) => state.reducerOne);
 
   useEffect(() => {
-    if (index >= data.length || index < 0) {
-      setIndex(0);
+    if(index < 0){
+      setIndex(0)
     }
     if (data[index]?.count) {
       dispatch(incrementByAmount(Number(data[index]?.count)));
     } else {
       dispatch(incrementByAmount(0));
     }
-    if (data[index]?.category === "stop" || data[index]?.category === undefined) {
+    if (data[index]?.category === "stop" ) {
       setIndex((prev) => prev + 1);
     }
-  }, [index, dispatch, data]);
+
+    
+  }, [index,data]);
 
   return { index, setIndex , count , dispatch, decrement, increment};
 };

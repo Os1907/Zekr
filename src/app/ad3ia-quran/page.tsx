@@ -1,28 +1,31 @@
 import React from 'react'
-import Item from '../_Components/Item/Item'
 import prayers from '@/helper/prayer'
+import localFont  from  'next/font/local'
+const KofeFont = localFont({ src: '../../../public/Fonts/alsamt diwani.ttf' })
+const Quran = localFont({ src: '../../../public/Fonts/alfont_com_AlFont_com_pdms-saleem-quranfont.ttf' })
 
 export default function page() {
-console.log(prayers)
 
   return (
     <>
     
-    {/* <Item/> */}
     <div dir='rtl' >
-     <h2 className='text-primary text-center text-5xl py-10 font-bold'>
+      <div className='flex justify-center' >
+
+     <h2 className={`text-off_white text-center border-b border-off_white inline  text-3xl lg:text-7xl py-5 lg:py-10  ${KofeFont.className}`}>
       {
         prayers.title
       }
      </h2>
+      </div>
      {
       prayers.items.map((item)=>{
         return <>
         
-     <div className='bg- primary p-3 shadow-xl mx-4 lg:mx-20 rounded-xl mt-2 font-ar text-off_white pr-10 text-center font-bold'>
-      <div className='bg-primary rounded-md'>
+     <div className='bg-[#1c1c1c1e] p-3 shadow-xl mx-4 lg:mx-20 rounded-xl my-4 font-ar text-off_white primary lg:pr-10 text-center '>
+      <div className=' rounded-md'>
 
-      <p className='text-2xl lg:mr-10 text-start inline'>
+      <p className={ `text-lg lg:text-4xl lg:mr-10 text-start ${Quran.className} `}>
       {item.name}
       </p>
       </div>
@@ -32,15 +35,15 @@ console.log(prayers)
         <div className='my-3 '>
 
        
-        <div className='flex flex-col justify-center items-center gap-x-2 bg-primary rounded-md py-2'>
+        <div className='px-3 flex flex-col justify-center  gap-x-2 bg-[#1c1c1c1e] rounded-3xl py-2'>
 
-        <p className='text-2xl mr-10 font-ar'>{item.start}</p>
-        <h3 className='text-4xl my-2  font-ar'>
+        <p className={`text-2xl lg:text-3xl mr-10 pt-2 text-start ${Quran.className}`}>{item.start} :</p>
+        <h3 className={`text-xl lg:text-4xl my-2 font-medium   ${Quran.className} `}>
      {
       item.prayer
      }
       </h3>
-      <p className='text-2xl mr-10 '>
+      <p className={`text-lg lg:text-2xl mr-10 ${Quran.className} `}>
       {
       item.reference
      }

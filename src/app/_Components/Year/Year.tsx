@@ -6,9 +6,9 @@ export default function Year() {
     const conflictStartDate = timeSince(new Date('1948-05-14'));
     //   console.log(conflictStartDate.years);
     return (
-        <div dir='rtl' className='      p-2 bg-white  px-20 text-start  absolute bottom-0 w-full '>
+        <div dir='rtl' className='      p-2 bg-white  text-center   w-full '>
 
-            <p className='text-base text-primary font-bold font-ar'>
+            <p className='text-base text-primary font-bold '>
 
                 مضى على احتلال
                 فلسطين
