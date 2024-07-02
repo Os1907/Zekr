@@ -58,7 +58,7 @@ export default function Navbar() {
    
   </div>
     {
-      Action ? null : <div className='lg:hidden bg-primary text-white  rounded-b-3xl mx-4 transition-all overflow-hidden  mb-5'>
+      Action ? null : <div className='lg:hidden  bg-gradient-to-b from-[#1c1c1c00] to-primary text-white  rounded-b-3xl mx-4 transition-all overflow-hidden  mb-5 pb-2 border-b border-[#ffffff41]'>
 
     <ul className=' flex justify-center flex-col items-center gap-y-4 py-2 '>
     <li   onClick={() => setAction(!Action)} className='cursor-pointer text-xl py-2   border-b border-off_white pb-2  hover:text-primary hover:bg-off_white transition-all px-3 hover:rounded-md hover:w-3/6 hover:text-center '>
