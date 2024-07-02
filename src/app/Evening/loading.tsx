@@ -4,8 +4,9 @@ export default function loading() {
   return (
     <>
 
-        <div>
-            <h2>Loading......</h2>
+        <div className='h-screen my-20'>
+        <span className="loader"></span>
+ 
         </div>
 
     </>

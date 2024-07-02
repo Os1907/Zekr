@@ -44,20 +44,40 @@ export const useAzkarData = (pathName:string) => {
   ];
 
   async function getData() {
+    const Azkarr = await Azkar();
     if(pathName == "Morning"){
-    const MorningZekration = await Azkar();
-    let Morining = MorningZekration["أذكار الصباح"];
+    let Morining = Azkarr["أذكار الصباح"];
     let MangedData = [...Morining];
     let arranged: any = MangedData.splice(0, 1)[0];
     let FinalArranged: Zekr[] | undefined = [...arranged, ...countiue, ...MangedData];
     setData(FinalArranged);
   }else if (pathName == "Evening") {
-    const EveningZekration = await Azkar();
-    let Evening = EveningZekration["أذكار المساء"];
+    let Evening = Azkarr["أذكار المساء"];
     let MangedData = [...Evening];
     setData(MangedData);
+  }else if (pathName == "Tasbeh") {
+    let Tasbeh = Azkarr["تسابيح"];
+    let MangedData = [...Tasbeh];
+    setData(MangedData);
+  }else if (pathName == "Sleep") {
+    let Tasbeh = Azkarr["أذكار النوم"];
+    let MangedData = [...Tasbeh];
+    setData(MangedData);
+  }else if (pathName == "waking-up") {
+    let Tasbeh = Azkarr["أذكار الاستيقاظ"];
+    let MangedData = [...Tasbeh];
+    setData(MangedData);
+  }else if (pathName == "ad3ia-quran") {
+    let Tasbeh = Azkarr["أدعية قرآنية"];
+    let MangedData = [...Tasbeh];
+    setData(MangedData);
   }
-  }
+
+
+
+  // ad3ia-quran
+
+}
   useEffect(() => {
     getData();
   }, []);

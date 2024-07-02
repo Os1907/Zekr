@@ -15,10 +15,10 @@ let { index, setIndex , count , dispatch, decrement} = useAzkarIndex(data)
   return (
     <>
       <div dir="rtl">
-        <h2 className="text-primary text-center text-5xl py-10 font-bold">{
+        <h2 className="text-primary text-center text-5xl py-10 font-bold font-ar">{
             data[0]?.category
             }</h2>
-        <div className="bg-primary p-3 shadow-xl mx-20 rounded-xl mt-2">
+        <div className="bg-primary p-3 shadow-xl mx-4 lg:mx-20 rounded-xl mt-2">
         <p className=" text-sm lg:text-base  text-center text-off_white ">
                 {data[index]?.count}
                 </p>
@@ -32,7 +32,7 @@ let { index, setIndex , count , dispatch, decrement} = useAzkarIndex(data)
           <div className=' px-3 rounded-full flex justify-center items-center  w-full '>
 
             {
-              count <= 0 ? <p className='text-white bg-emerald-600 px-3 py-1 rounded-full'>  تقبل الله منك  أنتقل الي التالي </p> : <button onClick={() => dispatch(decrement())} className='digital w-full text-primary b g-[#1C6758] py-4 px-10 text-xl font-bold lg:text-4xl rounded-xl cursor-pointer bg-off_white  yellow-400 hover:bg-[#168771] hover:text-white transition-all   '>
+              count <= 0 ? <p className='text-white bg-[#168771] px-3 py-1 rounded-full font-ar'>  تقبل الله   أنتقل الي التالي </p> : <button onClick={() => dispatch(decrement())} className='digital w-full text-primary b g-[#1C6758] py-4 px-10 text-xl font-bold lg:text-4xl rounded-xl cursor-pointer bg-off_white  yellow-400 hover:bg-[#168771] hover:text-white transition-all   '>
                 <span className='block'>
                   {count}
 

@@ -25,7 +25,7 @@ export default function RootLayout({
       <ReduxProvider>
         {children}
       </ReduxProvider>
-      <Year/>
+      {/* <Year/> */}
         </body>
     </html>
   );
