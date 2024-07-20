@@ -1,6 +1,6 @@
+import  {Zekr}  from '@/Interface/Interfaces';
 import { decrement, increment, incrementByAmount } from '@/Rdeux/counter';
 import { RootState } from '@/Rdeux/store';
-import Zekr from '@/Types/Azkar';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 

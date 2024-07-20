@@ -1,8 +1,4 @@
-interface TimeSince {
-    years: number;
-    months: number;
-    days: number;
-  }
+import { TimeSince } from "@/Interface/Interfaces";
 export default function timeSince(startDate: Date): TimeSince {
     const now = new Date();
     const start = new Date(startDate);

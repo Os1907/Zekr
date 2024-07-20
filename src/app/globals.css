@@ -12,8 +12,8 @@
     font-family: "Jersey 20 Charted", sans-serif !important;
   }
    body{
-    /* background-color: #edf1f4; */
-   background-image: url(../../public//islamic.svg); 
+    background-color: #1f2125;
+   /* background-image: url(../../public//islamic.svg);  */
     background-position: center center;
     background-size: cover;
     background-attachment: fixed;
