@@ -6,7 +6,6 @@ const KofeFont = localFont({ src: '../../../public/Fonts/alsamt diwani.ttf' })
 
 export default async function page() {
   const {data} = await surah()
-  // console.log(data)
   return (
     <>
     
