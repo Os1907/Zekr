@@ -55,7 +55,6 @@ async function Slah() {
 
                                 {
                                     Number(timeSalah.slice(0, 2)) > 12 ? ` ${timeSalah.slice(3, 5)} :${Number(timeSalah.slice(0, 2)) - 12}   ` : `${timeSalah}`
-
                                 }
 
                                 <span className='mx-1 block lg:inline'>

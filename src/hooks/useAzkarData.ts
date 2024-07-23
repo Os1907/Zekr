@@ -49,7 +49,7 @@ export const useAzkarData = (pathName:string) => {
     let Morining = Azkarr["أذكار الصباح"];
     let MangedData = [...Morining];
     let arranged: any = MangedData.splice(0, 1)[0];
-    let FinalArranged: Interfaces[] | undefined = [...arranged, ...countiue, ...MangedData];
+    let FinalArranged: Zekr[] | undefined = [...arranged, ...countiue, ...MangedData];
     setData(FinalArranged);
   }else if (pathName == "Evening") {
     let Evening = Azkarr["أذكار المساء"];
