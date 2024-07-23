@@ -1,5 +1,6 @@
 import IP from '@/Api/Ip'
 import slaah from '@/Api/Slaah'
+import { SalahTime } from '@/Interface/Interfaces';
 import React from 'react'
 
 
@@ -11,9 +12,8 @@ async function Slah() {
     let month = fullDate.getMonth()
     let day = fullDate.getDate();
     let slahInfo = await slaah(`${day}-${month + 1}-${year}`, location.city, location.country.name)
-    let timeInfo = slahInfo?.data.timings
-    let slahTime = Object.entries(timeInfo)
-
+    let timeInfo :SalahTime = slahInfo?.data.timings
+    let slahTime  = Object.entries(timeInfo)
 
     return <>
         <div className='bg-second rounded-xl pt-3 pb-5 '>
@@ -54,7 +54,7 @@ async function Slah() {
                             <p className=' text-lg lg:text-xl font-semibold'>
 
                                 {
-                                    timeSalah.slice(0, 2) > 12 ? ` ${timeSalah.slice(3, 5)} :${Number(timeSalah.slice(0, 2)) - 12}   ` : `${timeSalah}`
+                                    Number(timeSalah.slice(0, 2)) > 12 ? ` ${timeSalah.slice(3, 5)} :${Number(timeSalah.slice(0, 2)) - 12}   ` : `${timeSalah}`
 
                                 }
 

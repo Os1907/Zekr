@@ -13,3 +13,6 @@ export interface Zekr {
     months: number;
     days: number;
   }
+ export interface SalahTime {
+    [key: string]: string;
+  }
