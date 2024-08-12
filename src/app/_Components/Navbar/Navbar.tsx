@@ -5,7 +5,7 @@ import { IoMenu } from 'react-icons/io5'
 import { CgMenuLeft } from "react-icons/cg";
 import Link from 'next/link'
 import localFont  from  'next/font/local'
-const Quran = localFont({ src: '../../../../public/Fonts/alfont_com_AlFont_com_pdms-saleem-quranfont.ttf' })
+const Quran = localFont({ src: '../../../../public/Fonts/taha2.ttf' })
 const KofeFont = localFont({ src: '../../../../public/Fonts/alsamt diwani.ttf' })
 
 export default function Navbar() {
