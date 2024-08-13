@@ -31,7 +31,7 @@ export interface Zekr {
     number_of_ayah: number;
     number_of_surah: number;
     place: string;
-    recitation: [{
+    recitations: [{
       name:string;
       audio_url:string
     }];

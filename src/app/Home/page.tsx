@@ -4,7 +4,9 @@ import localFont from 'next/font/local'
 import IP from "@/Api/Ip";
 import Slah from "../_Components/Slah/Slah";
 import Year from "../_Components/Year/Year";
-const Quran = localFont({ src: '../../../public/Fonts/alfont_com_AlFont_com_pdms-saleem-quranfont.ttf' })
+const Quran = localFont({ src: '../../../public/Fonts/taha2.ttf' })
+const hand = localFont({ src: '../../../public/Fonts/hand.ttf' })
+
 function MainHome() {
 
 
@@ -59,13 +61,19 @@ function MainHome() {
               </>
             })
           }
+          <div className="text-off_white text-2xl col-span-2 lg:col-span-3 cursor-pointer  border hover:border-second transition-all group px-3 py-4  rounded-lg " >
+          <Link href={`/Quran`} className="    flex justify-center items-center flex-col">
+
+<p className='text-off_white  text-3xl'> القرآن الكريم</p>
+</Link>
+          </div>
           <div className="col-span-2 lg:col-span-3" >
 
             <Slah />
           </div>
         </div>
 
-        <div className="w-full">
+        <div className={`w-full ${hand.className} font-bold` }>
 
           <Year />
         </div>

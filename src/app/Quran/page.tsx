@@ -7,7 +7,7 @@ import Link from 'next/link'
 const Quran = localFont({ src: '../../../public/Fonts/sura.ttf' })
 const Quran2 = localFont({ src: '../../../public/Fonts/alfont_com_AlFont_com_pdms-saleem-quranfont.ttf' })
 const KofeFont = localFont({ src: '../../../public/Fonts/alsamt diwani.ttf' })
-
+const hand = localFont({ src: '../../../public/Fonts/hand.ttf' })
 
 export default function Quraan() {
 
@@ -54,7 +54,7 @@ export default function Quraan() {
 
                       <div className='flex size-8 mr-1  items-center bg-zinc-700 rounded-md group-hover:bg-second rotate-45 justify-center transition-all'>
 
-                        <span className={` -rotate-45 pt-2  text-base relative z-10  ${KofeFont.className} `}>
+                        <span className={` -rotate-45 pt-2  text-base relative z-10  ${hand.className} `}>
                           {
                             item.number_of_surah
                           }
@@ -65,7 +65,7 @@ export default function Quraan() {
                       </p>
                     </div>
 
-                    <p className={`${KofeFont.className} text-sm group-hover:text-second transition-all`}>
+                    <p className={`${hand.className} text-sm group-hover:text-second transition-all`}>
                       {
                         item.number_of_ayah
                       } <span className={`${Quran.className}  text-lg`}>

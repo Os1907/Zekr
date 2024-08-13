@@ -7,6 +7,7 @@ import Link from 'next/link'
 import localFont  from  'next/font/local'
 const Quran = localFont({ src: '../../../../public/Fonts/taha2.ttf' })
 const KofeFont = localFont({ src: '../../../../public/Fonts/alsamt diwani.ttf' })
+const hand = localFont({ src: '../../../../public/Fonts/hand.ttf' })
 
 export default function Navbar() {
   const [Action, setAction] = useState(true)
@@ -40,10 +41,10 @@ export default function Navbar() {
     },
   ]
   return (
-    <nav dir='rtl' className={`${Quran.className}`} >
-  <div className="lg:mx-20 px-10 flex    items-center justify-between  gap-y-2 py-2 bg-second rounded-b-full ">
+    <nav dir='rtl' className={`${hand.className}`} >
+  <div className="lg:mx-20 px-10 flex    items-center justify-between  gap-y-2 py-4 bg-second rounded-b-full ">
     <div className=' w-1/2 lg:w-auto flex '>
-      <p className={`text-3xl text-off_white ${KofeFont.className} mr-2 pt-2`}>
+      <p className={`text-3xl text-off_white ${Quran.className} mr-2 `}>
      ذِكْر
       </p>
     </div>
@@ -51,7 +52,7 @@ export default function Navbar() {
     <ul  className='hidden lg:flex  justify-between w-full lg:justify-center gap-x-4 text-off_white text-2xl   '>
       {
           headBar.map((item)=> <>
-          <li className='cursor-pointer hover:bg-primary  hover:text-white transition-all hover:px-5 py-1 hover:rounded-lg'>
+          <li key={item.id} className='cursor-pointer hover:bg-primary  hover:text-white transition-all hover:px-5 py-1 hover:rounded-2xl'>
         <Link href={`${item.link}`}>
         {
           item.title
