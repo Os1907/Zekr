@@ -2,31 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Jersey+20+Charted&display=swap');
 
-.font-ar{
-    font-family: "Aref Ruqaa", serif !important;
-  }
-  .digital{
-    font-family: "Jersey 20 Charted", sans-serif !important;
-  }
    body{
-    background-color: #1f2125;
-   /* background-image: url(../../public//islamic.svg);  */
-    background-position: center center;
-    background-size: cover;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-position: relative;
-min-height: 100vh;
-   }
-  .glass {
-    backdrop-filter: blur(2px) saturate(180%);
-    /* -webkit-backdrop-filter: blur(16px) saturate(180%); */
-    background-color: #ffffff09;
-    border: 1px solid #ffffff42;
-}
+    background-color: #f3f4ee;
+    }
+ 
 
 
    .slideInDown {
@@ -70,7 +50,7 @@ min-height: 100vh;
     display: block;
     margin:15px auto;
     position: relative;
-    color: #FFF;
+    color: #0d0d0d;
     left: -100px;
     box-sizing: border-box;
     animation: shadowRolling 2s linear infinite;
@@ -103,5 +83,23 @@ min-height: 100vh;
     }
     100% {
       box-shadow: 200px 0 rgba(255, 255, 255, 0), 200px 0 rgba(255, 255, 255, 0), 200px 0 rgba(255, 255, 255, 0), 200px 0 rgba(255, 255, 255, 0);
+    }
+  }
+  
+  .wdithh{
+    animation: wid 0.5s ease 0s 1 normal forwards;
+    -webkit-animation: wid 0.5s ease 0s 1 normal forwards;
+}
+
+  @keyframes wid {
+  
+    0% {
+      transform: scaleX(0);
+      transform-origin: 100% 100%;
+    }
+  
+    100% {
+      transform: scaleX(1);
+      transform-origin: 100% 100%;
     }
   }

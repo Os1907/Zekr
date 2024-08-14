@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { Iparams, Surah } from '@/Interface/Interfaces'
 import localFont from 'next/font/local'
 
-const hand = localFont({ src: '../../../../public/Fonts/hand.ttf' })
+const main = localFont({ src: '../../../../public/Fonts/main.ttf' })
 const taha = localFont({ src: '../../../../public/Fonts/taha.ttf' })
 const number = localFont({ src: '../../../../public/Fonts/number.ttf' })
 const taha3 = localFont({ src: '../../../../public/Fonts/taha3.ttf' })
@@ -15,8 +15,8 @@ interface IsurahBox {
 
 export default function SurahBox(props: IsurahBox) {
     const { data, params } = props
-    const [value, setValue] = useState(50);
-    const [color, setColor] = useState("#ffffff"); 
+    const [value, setValue] = useState(25);
+    const [color, setColor] = useState("#0d0d0d"); 
 
     const handleFontSizeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setValue(e.target.valueAsNumber);
@@ -30,8 +30,8 @@ export default function SurahBox(props: IsurahBox) {
         <>
             
             <div className="flex items-center justify-center space-x-4 mt-8">
-                <label htmlFor="range-slider" className="text-primary font-medium">
-                    <span className={` ${hand.className} text-second mx-2`}>  حجم الخط للقراءة  </span>
+                <label htmlFor="range-slider" className="text-primary font-medium text-2xl">
+                    <span className={` ${main.className} text-second mx-2`}>  حجم الخط للقراءة  </span>
                 </label>
                 <input
                     id="range-slider"
@@ -43,12 +43,12 @@ export default function SurahBox(props: IsurahBox) {
                     onChange={handleFontSizeChange}
                     className="w-1/2 border-0 h-1 bg-primary rounded-lg cursor-pointer accent-second focus-visible:border-0 hover:border-0"
                 />
-                <span className={` ${hand.className} text-second mx-2`}>{value} </span>
+                <span className={` ${main.className} text-second mx-2 text-2xl`}>{value} </span>
             </div>
 
             <div className="flex items-center justify-center space-x-4 mt-4">
                 <label htmlFor="color-picker" className="text-primary font-medium">
-                    <span className={` ${hand.className} text-second mx-2`}> لون الخط</span>
+                    <span className={` ${main.className} text-second mx-2`}> لون الخط</span>
                 </label>
                 <input
                     id="color-picker"
@@ -59,7 +59,7 @@ export default function SurahBox(props: IsurahBox) {
                 />
             </div>
 
-            <div style={{ fontSize: `${value}px`, color: color }} className={`text-center mt-3 lg:mt-8 lg:mx-32 border-second border-y py-5 rounded-2xl`}
+            <div style={{ fontSize: `${value}px`, color: color }} className={`text-center mt-3 lg:mt-8 lg:mx-32 border-zinc-800 border-y py-5 rounded-2xl`}
             
             >
                 <div>

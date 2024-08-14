@@ -4,18 +4,17 @@ import React from 'react'
 
 export default function Year() {
     const conflictStartDate = timeSince(new Date('1948-05-14'));
-    //   console.log(conflictStartDate.years);
     return (
-        <div dir='rtl' className='      p-2 bg-white  text-center   w-full '>
+        <div dir='rtl' className='      p-2 bg-second  text-center  w-3/4  lg:w-1/2  mx-auto rounded-pixel '>
 
-            <p className='text-base text-primary font-bold '>
+            <p >
 
                 مضى على احتلال
                 فلسطين
 
                 {
                     conflictStartDate.years
-                }  و
+                }  عام و
 
                 {
                     conflictStartDate.months

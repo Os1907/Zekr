@@ -6,11 +6,8 @@ import SurahBox from '@/app/_Components/surah/surahBox'
 import AudioPlayer from '@/app/_Components/audio/audio'
 import Link from 'next/link'
 const Quran = localFont({ src: '../../../../public/Fonts/sura.ttf' })//sura
-const taha = localFont({ src: '../../../../public/Fonts/taha.ttf' })
-const taha2 = localFont({ src: '../../../../public/Fonts/taha2.ttf' })
-const taha3 = localFont({ src: '../../../../public/Fonts/taha3.ttf' })
 const number = localFont({ src: '../../../../public/Fonts/number.ttf' })
-const hand = localFont({ src: '../../../../public/Fonts/hand.ttf' })
+const main = localFont({ src: '../../../../public/Fonts/main.ttf' })
 
 export default async function page({ params }: Iparams) {
     const data: Surah = await getSurah(params.id)
@@ -22,59 +19,59 @@ export default async function page({ params }: Iparams) {
                 <div className='flex justify-center items-center gap-x-2'>
 
 
-                    <h3 className={`text-5xl lg:text-8xl text-off_white ${Quran.className}`}> سورة {data?.name_translations?.ar}</h3>
-                    <p className={`text-second ${hand.className}`}>
+                    <h3 className={`text-5xl lg:text-8xl text-second ${Quran.className}`}> سورة {data?.name_translations?.ar}</h3>
+                    <p className={`text-second ${main.className}`}>
                         ({
                             data.place === "Mecca" ? "مكية" : "مدنية"
                         } )
                     </p>
                 </div>
-                <div className={` flex justify-between text-second text-xl lg:text-2xl mt-3   ${hand.className}`}>
+                <div className={` flex justify-between text-second text-xl lg:text-2xl mt-3   ${main.className}`}>
                     <div className=' flex flex-col '>
 
-                    <p>
-                        <span className="  mx-1 mb-1">
-                            رقم السورة
-                        </span>
-                        {data.number_of_surah}
-                        
-                    </p>
-                    <Link href={`/Quran/${data.number_of_surah - 1}`}>
-                    <p
-                    className="text-primary bg-second hover:bg-[#2ca4ab]  px-3  py-1 rounded-3xl focus:outline-none"
-                >
-                    السورة السابقة 
-                </p> 
-                </Link>
-</div>
+                        <p className={`${number.className}`}>
+                            <span  className={`${main.className} mb-1 mx-1`}>
+                                رقم السورة
+                            </span>
+                            {data.number_of_surah}
 
-<div  className=' flex flex-col '>
+                        </p>
+                        <Link href={`/Quran/${data.number_of_surah - 1}`}>
+                            <p
+                                className="text-primary bg-second hover:bg-bg-zinc-900 px-5  py-1 rounded-pixel "
+                            >
+                                السورة السابقة
+                            </p>
+                        </Link>
+                    </div>
 
-                    <p>
-                        <span className="  mx-1 mb-1">
-                            عدد الآيات
-                        </span>
-                        {data.number_of_ayah}
-                    </p>
-                    <Link href={`/Quran/${data.number_of_surah + 1}`}>
-                    <p
-                    className="text-primary bg-second hover:bg-[#2ca4ab]  px-3  py-1 rounded-3xl focus:outline-none"
-                >
-                    السورة التالية 
-                </p> 
-                </Link>
-</div>
+                    <div className=' flex flex-col '>
+
+                        <p className={`${number.className}`}>
+                            <span className={`${main.className} mb-1 mx-1`} >
+                                عدد الآيات
+                            </span>
+                            {data.number_of_ayah}
+                        </p>
+                        <Link href={`/Quran/${data.number_of_surah + 1}`}>
+                            <p
+                                className="text-primary bg-second hover:bg-zinc-900  px-3  py-1 rounded-pixel"
+                            >
+                                السورة التالية
+                            </p>
+                        </Link>
+                    </div>
                 </div>
                 <div className=' w-full flex justify-center my-3'>
-                    <p className={`${hand.className} text-white  text-2xl `}>
-                     الاستماع ❤
+                    <p className={`${main.className} text-second  text-4xl `}>
+                        الاستماع ❤
                     </p>
                 </div>
                 {
-                    data?.recitations.map(item => <AudioPlayer key={`${item.audio_url + item.name + data.name_translations.ar}`} audio={item}/> )
+                    data?.recitations.map(item => <AudioPlayer key={`${item.audio_url + item.name + data.name_translations.ar}`} audio={item} />)
                 }
-                    
-                    
+
+
 
 
                 <SurahBox data={data} params={params.id} />
