@@ -50,10 +50,10 @@ async function Slah() {
                 {slahTime.map(([salah, timeSalah]) => {
                     return (salah === 'Fajr' || salah === 'Sunrise' || salah === 'Dhuhr' || salah === 'Asr' || salah === 'Maghrib' || salah === 'Isha') ? (
                         <div className="col-span-1 bg-primary text-second rounded-pixel p-3 flex flex-col justify-center items-center " key={salah}>
-                            <p className=' text-2xl lg:text-3xl '>
+                            <p className=' text-lg lg:text-2xl  font-semibold'>
                                 {salah === 'Fajr' ? ' الفجر' : salah === 'Sunrise' ? 'الشروق' : salah === 'Dhuhr' ? ' الظهر' : salah === 'Asr' ? ' العصر' : salah === 'Maghrib' ? ' المغرب' : salah === 'Isha' ? ' العشاء' : null}
                             </p>
-                            <p className={` text-lg lg:text-2xl font-semibold ${number.className}`}>
+                            <p className={` text-lg lg:text-2xl font-semibold ${number.className} `}>
 
                                 {
                                     Number(timeSalah.slice(0, 2)) > 12 ? ` ${timeSalah.slice(3, 5)} : ${Number(timeSalah.slice(0, 2))- 12}   ` : `${timeSalah}`
@@ -61,7 +61,7 @@ async function Slah() {
 
                                 <span className={` mx-1 inline ${main.className} `}>
 
-                                    {Number(timeSalah.slice(0, 2)) < 12 ? "صباحاً" : "مساءاً"}
+                                    {Number(timeSalah.slice(0, 2)) < 12 ? "ص" : "م"}
                                 </span>
                             </p>
                         </div>

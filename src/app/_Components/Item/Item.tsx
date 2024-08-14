@@ -76,7 +76,7 @@ export default function Item() {
         </button>
         
       </div>
-    <div className={ ` ${main.className} text-primary text-xl lg:text-2xl`}>
+    <div className={ ` ${main.className} text-primary text-lg lg:text-2xl`}>
 
       <Year/>
     </div>
