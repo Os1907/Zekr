@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { counterReducer } from "./counter";
+import { saveReducer } from "./save";
 
 
 
@@ -13,8 +14,11 @@ import { counterReducer } from "./counter";
 export let store = configureStore(
     {
         reducer:{
-            reducerOne:counterReducer
+            reducerOne:counterReducer,
+                save:saveReducer,
+
         }
+        
     }
 )
 

@@ -51,7 +51,7 @@ export default function Navbar() {
    <div>
     <ul  className='hidden lg:flex  justify-between w-full lg:justify-center gap-x-4 text-primary text-2xl   '>
       {
-          headBar.map((item)=> <>
+          headBar.map((item)=> {return ( 
           <li key={item.id} className='cursor-pointer hover:bg-primary  hover:text-second transition-all hover:px-5 py-1 hover:rounded-pixel'>
         <Link href={`${item.link}`}>
         {
@@ -59,7 +59,7 @@ export default function Navbar() {
         }
 </Link>
       </li>
-          </> )
+           ) })
       }
     </ul>
     {
@@ -74,15 +74,15 @@ export default function Navbar() {
 
     <ul className=' flex justify-center flex-col items-center gap-y-4 py-2 '>
     {
-          headBar.map((item)=> <>
-          <li onClick={() => setAction(!Action)} className='cursor-pointer text-2xl py-2 font-medium    pb-2  hover:text-second hover:bg-primary transition-all px-3 hover:rounded-pixel hover:w-3/6 hover:text-center '>
+          headBar.map((item)=> { return (  <li key={item.id} onClick={() => setAction(!Action)} className='cursor-pointer text-2xl py-2 font-medium    pb-2  hover:text-second hover:bg-primary transition-all px-3 hover:rounded-pixel hover:w-3/6 hover:text-center '>
         <Link href={`${item.link}`}>
         {
           item.title
         }
 </Link>
       </li>
-          </> )
+           ) }
+          )
       }
         </ul>
 
