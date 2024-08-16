@@ -2,7 +2,14 @@
 import { createSlice , PayloadAction } from "@reduxjs/toolkit";
 
 
-const initialState: number[] = JSON.parse(localStorage?.getItem("data") || "[]");
+const getInitialState = () => {
+    if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
+      return JSON.parse(localStorage.getItem("data") || "[]");
+    }
+    return [];
+  };
+  
+  const initialState: number[] = getInitialState();
 
 const save = createSlice({
   name: "save",
@@ -10,11 +17,16 @@ const save = createSlice({
   reducers: {
     store(state, action: PayloadAction<number>) {
         state.push(action.payload);
-        localStorage?.setItem("data", JSON.stringify(state));
+        // localStorage.setItem("data", JSON.stringify(state));
+        if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
+            localStorage.setItem("data", JSON.stringify(state));
+          }
     },
     remove(state, action: PayloadAction<number>) {
         state.splice(action.payload, 1);
-        localStorage?.setItem("data", JSON.stringify(state));
+        if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
+            localStorage.setItem("data", JSON.stringify(state));
+          }
     },
     empty(state) {
       state = [];
