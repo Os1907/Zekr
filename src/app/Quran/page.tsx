@@ -83,7 +83,7 @@ export default function Quraan() {
                          onClick={() => {
                            dispatch(store(item.number_of_surah));
                          }}
-                         className='w-1/2 h-full text-primary hover:text-second hover:left-9 transition-all'
+                         className='w-1/2 h-full text-primary  hover:left-9 transition-all'
                        />
                    }
 
