@@ -51,10 +51,9 @@ export default function Quraan() {
 
           <p className={`w-3/4 relative rounded-pixel bg-second active:outline-0 text-primary2 border hover:scale-105  hover:border-second ${main.className} mx-auto text-2xl px-10 py-2 `}>
             السور المحفوظه
-            <div className='absolute -top-4 -left-3 text-7xl   my-3  '>
+            <span className='absolute -top-4 -left-3 text-7xl   my-3  '>
               <BsBookmarkHeartFill className='w-1/2 h-full text-primary ' />
-
-            </div>
+            </span>
           </p>
 
         </div>
