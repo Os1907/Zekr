@@ -1,12 +1,12 @@
 {
-  "name": "zekr",
-  "short_name": "zekr",
-  "theme_color": "#fff",
-  "background_color": "#fff",
-  "display": "fullScreen",
+  "name": "ذِكْر",
+  "short_name": "ذِكْر",
+  "theme_color": "#4CAF50",
+  "background_color": "#ffffff",
+  "display": "standalone",
   "orientation": "portrait",
   "scope": "/",
-  "start_url": "/",
+  "start_url": "/?homescreen=1",
   "icons": [
     {
       "src": "images/icons/icon-72x72.png",

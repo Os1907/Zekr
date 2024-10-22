@@ -25,6 +25,7 @@ export const metadata: Metadata = {
     capable: true,
     statusBarStyle: "default",
     title: APP_DEFAULT_TITLE,
+    // startUpImage: [],
   },
   formatDetection: {
     telephone: false,
@@ -47,6 +48,18 @@ export const metadata: Metadata = {
     description: APP_DESCRIPTION,
   },
 };
+
+export const viewport: Viewport = {
+  themeColor: "#FFFFFF",
+};
+// export const metadata = {
+//   title: "ذِكر",
+//   description: "تطبيق شامل لأذكار المسلم لمساعدتك على الذكر في حياتك اليومية.",
+//   manifest: "/manifest.json",
+//   keywords: ["Muslim Azkar"],
+//   viewport: "minimum-scale=1, initial-scale=1, width=device-width, shrink-to-     fit=no, viewport-fit=cover",
+// };
+
 
 export default function RootLayout({
   children,
