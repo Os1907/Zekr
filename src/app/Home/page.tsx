@@ -63,7 +63,7 @@ function MainHome() {
               </>
             })
           }
-          <div className="text-primary bg-second hover:scale-105  text-2xl col-span-2 lg:col-span-3 cursor-pointer  border hover:border-second transition-all group px-3 py-4  rounded-pixel " >
+          <div className="text-second bg-primary2   text-2xl col-span-2 lg:col-span-3 cursor-pointer  border border-second transition-all group px-3 py-4  rounded-pixel " >
           <Link href={`/Quran`} className="    flex justify-center items-center flex-col">
 
 <p className=' text-2xl lg:text-4xl '> القرآن الكريم</p>
