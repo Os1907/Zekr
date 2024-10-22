@@ -1,9 +1,9 @@
 {
   "name": "ذِكْر",
   "short_name": "ذِكْر",
-  "theme_color": "#4CAF50",
-  "background_color": "#ffffff",
-  "display": "standalone",
+  "theme_color": "#f3f4ee",
+  "background_color": "#0d0d0d",
+  "display": "fullScreen",
   "orientation": "portrait",
   "scope": "/",
   "start_url": "/?homescreen=1",
