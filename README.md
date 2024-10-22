@@ -1,13 +1,10 @@
 # Zekr
 
 ## Description
-Zekr is a web application designed to help users engage in spiritual practices and remembrance. The platform offers various features to enhance the experience of its users, allowing them to track and manage their spiritual activities efficiently.
+Zekr is a web application designed for Muslim users to help them to say Azkar.
 
 ## Features
 - **User-friendly Interface**: An intuitive and easy-to-navigate interface for all users.
-- **Spiritual Tracking**: Users can log and track their spiritual practices.
-- **Reminders**: Set reminders to encourage regular engagement in spiritual activities.
-- **Community**: Connect with like-minded individuals to share experiences and support each other.
 
 ## PWA Functionality
 Zekr is built as a Progressive Web Application (PWA), which means it can be installed on your device and used offline. Some benefits include:
