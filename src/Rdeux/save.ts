@@ -23,9 +23,6 @@ const save = createSlice({
     },
     remove(state, action: PayloadAction<number>) {
       state.splice(action.payload, 1);
-        if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
-            localStorage.setItem("data", JSON.stringify(state.splice(action.payload, 1)));
-          }
     },
     empty(state) {
       state = [];
