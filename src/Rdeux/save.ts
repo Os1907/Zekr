@@ -9,19 +9,19 @@ const getInitialState = () => {
     return [];
   };
   
-  const initialState: Array<any> = getInitialState();
+  const initialState: Array<number> = getInitialState();
 
 const save = createSlice({
   name: "save",
   initialState,
   reducers: {
-    store(state, action: PayloadAction<any>) {
+    store(state, action: PayloadAction<number>) {
         state.push(action.payload);
         if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
             localStorage.setItem("data", JSON.stringify(state));
           }
     },
-    remove(state, action: PayloadAction<any>) {
+    remove(state, action: PayloadAction<number>) {
       state.splice(action.payload, 1);
         if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
             localStorage.setItem("data", JSON.stringify(state.splice(action.payload, 1)));
