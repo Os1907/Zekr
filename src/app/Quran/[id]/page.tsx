@@ -11,7 +11,6 @@ const main = localFont({ src: '../../../../public/Fonts/main.ttf' })
 
 export default async function page({ params }: Iparams) {
     const data: Surah = await getSurah(params.id)
-    // console.log(data.recitations[0].audio_url)
     return (
         <>
             <div dir='rtl' className=' my-10  mx-4 lg:mx-20'>
@@ -29,8 +28,8 @@ export default async function page({ params }: Iparams) {
                 <div className={` flex justify-between text-second text-xl lg:text-2xl mt-3   ${main.className}`}>
                     <div className=' flex flex-col '>
 
-                        <p className={`${number.className}`}>
-                            <span  className={`${main.className} mb-1 mx-1`}>
+                        <p className={`${main.className} text-3xl`}>
+                            <span  className={`mb-1 mx-1`}>
                                 رقم السورة
                             </span>
                             {data.number_of_surah}
@@ -47,8 +46,8 @@ export default async function page({ params }: Iparams) {
 
                     <div className=' flex flex-col '>
 
-                        <p className={`${number.className}`}>
-                            <span className={`${main.className} mb-1 mx-1`} >
+                        <p className={`${main.className} text-3xl`}>
+                            <span className={` mb-1 mx-1`} >
                                 عدد الآيات
                             </span>
                             {data.number_of_ayah}

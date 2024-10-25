@@ -4,6 +4,7 @@ import localFont from 'next/font/local'
 
 const main = localFont({ src: '../../../../public/Fonts/main.ttf' })
 const number = localFont({ src: '../../../../public/Fonts/number.ttf' })
+const basic = localFont({ src: '../../../../public/Fonts/New/arabic.ttf' })
 interface IAudio{
     audio:{ 
         name: string,
@@ -39,10 +40,7 @@ export default function AudioPlayer(props:IAudio) {
         audioRef.current.currentTime = e.target.valueAsNumber;
         setCurrentTime(e.target.valueAsNumber);
     };
-    //    const handleSeek = (event: React.ChangeEvent<HTMLInputElement>) => {
-    //     audioRef.current.currentTime = event.target.value;
-    //     setCurrentTime(event.target.value);
-    // };
+   
 useEffect(()=> {
     if(props.audio.name === "Mishari Rashid al-`Afasy"){
         setName("مشاري راشد العفاسي ")
@@ -56,7 +54,7 @@ useEffect(()=> {
     return (
 
         
-        <div className={ isPlaying ?` ${ main.className} w-full  mx-auto px-5 py-2   bg-second rounded-pixel my-2 wdithh ` : `${ main.className} w-3/4 lg:w-1/2   mx-auto px-5 py-2   bg-second rounded-pixel my-2 `}>
+        <div className={ isPlaying ?` ${ basic.className} w-full  mx-auto px-5 py-2   bg-second rounded-pixel my-2 wdithh ` : `${ main.className} w-3/4 lg:w-1/2   mx-auto px-5 py-2   bg-second rounded-pixel my-2 `}>
             <audio
                 ref={audioRef}
                 onTimeUpdate={handleTimeUpdate}

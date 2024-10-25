@@ -7,6 +7,7 @@ const main = localFont({ src: '../../../../public/Fonts/main.ttf' })
 const taha = localFont({ src: '../../../../public/Fonts/taha.ttf' })
 const number = localFont({ src: '../../../../public/Fonts/number.ttf' })
 const taha3 = localFont({ src: '../../../../public/Fonts/taha3.ttf' })
+const quran = localFont({ src: '../../../../public/Fonts/New/arabic3.ttf' })
 
 interface IsurahBox {
     data: Surah
@@ -59,21 +60,21 @@ export default function SurahBox(props: IsurahBox) {
                 />
             </div>
 
-            <div style={{ fontSize: `${value}px`, color: color }} className={`text-center mt-3 lg:mt-8 lg:mx-32 border-zinc-800 border-y py-5 rounded-2xl`}
+            <div style={{ fontSize: `${value}px`, color: color }} className={`${quran.className} text-center mt-3 lg:mt-8 lg:mx-32 border-zinc-800 border-y py-5 rounded-2xl`}
             
             >
                 <div>
                 {
-                    params != 9 ? <p style={{ fontSize: `${value}px`, color: color }} className={`amiri-quran-regular  lg:my-10 text-center`}>
+                    params != 9 ? <p style={{ fontSize: `${value}px`, color: color }} className={` lg:my-10 text-center`}>
                         ﴿  بِسْمِ اللَّـهِ الرَّحْمَـٰنِ الرَّحِيمِ   ﴾
                     </p> : <></>
                 }
             </div>
                 {
                     data?.verses?.map((item, index) => (
-                        <p key={index} className={`amiri-quran-regular  text-center inline`}>
+                        <p key={index} className={` text-center inline-block my-3`}>
                             {index === 0 && params != 9 ? item?.text.slice(39) : item.text}
-                            <span style={{ fontSize: `${value - 5}px` }} className={`${number.className} text-second mx-2`}>
+                            <span style={{ fontSize: `${value - 5}px` }} className={` text-second inline-block`}>
                                 ﴿ {item?.number} ﴾
                             </span>
                         </p>
