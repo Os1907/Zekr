@@ -19,10 +19,8 @@ export default function Saved() {
         const data = await surah()
         setSwar(data)
     }
-
     useEffect(() => {
         fetch()
-        console.log(count)
     }, [])
     return (
         <>

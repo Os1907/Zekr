@@ -64,14 +64,14 @@ export default function SurahBox(props: IsurahBox) {
             >
                 <div>
                 {
-                    params != 9 ? <p style={{ fontSize: `${value}px`, color: color }} className={`${taha3.className} lg:my-10 text-center`}>
+                    params != 9 ? <p style={{ fontSize: `${value}px`, color: color }} className={`amiri-quran-regular  lg:my-10 text-center`}>
                         ﴿  بِسْمِ اللَّـهِ الرَّحْمَـٰنِ الرَّحِيمِ   ﴾
                     </p> : <></>
                 }
             </div>
                 {
                     data?.verses?.map((item, index) => (
-                        <p key={index} className={`${taha.className} text-center inline`}>
+                        <p key={index} className={`amiri-quran-regular  text-center inline`}>
                             {index === 0 && params != 9 ? item?.text.slice(39) : item.text}
                             <span style={{ fontSize: `${value - 5}px` }} className={`${number.className} text-second mx-2`}>
                                 ﴿ {item?.number} ﴾

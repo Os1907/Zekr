@@ -82,6 +82,7 @@ export default function Quraan() {
                        : <BsBookmarkHeartFill
                          onClick={() => {
                            dispatch(store(item.number_of_surah));
+                           
                          }}
                          className='w-1/2 h-full text-primary  hover:left-9 transition-all'
                        />

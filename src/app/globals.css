@@ -2,13 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
-
+@import url('https://fonts.googleapis.com/css2?family=Amiri+Quran&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
    body{
     background-color: #f3f4ee;
     }
  
 
-
+    .amiri-quran-regular {
+      font-family: "Amiri Quran", serif !important;
+    }
    .slideInDown {
   -webkit-animation-name: slideInDown;
   animation-name: slideInDown;
