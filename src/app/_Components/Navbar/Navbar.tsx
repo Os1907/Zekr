@@ -5,9 +5,8 @@ import { IoMenu } from 'react-icons/io5'
 import { CgMenuLeft } from "react-icons/cg";
 import Link from 'next/link'
 import localFont  from  'next/font/local'
-const main = localFont({ src: '../../../../public/Fonts/main.ttf' })
-const Quran = localFont({ src: '../../../../public/Fonts/taha2.ttf' })
 const KofeFont = localFont({ src: '../../../../public/Fonts/alsamt diwani.ttf' })
+const new1 = localFont({ src: '../../../../public/Fonts/New/arabic.ttf' })
 
 export default function Navbar() {
   const [Action, setAction] = useState(true)
@@ -41,18 +40,18 @@ export default function Navbar() {
     },
   ]
   return (
-    <nav dir='rtl' className={`${main.className}`} >
-  <div className="lg:mx-20 mx-4 px-10 flex    items-center justify-between  gap-y-2 py-4 bg-second rounded-pixel mt-3 ">
-    <div className=' w-1/2 lg:w-auto flex '>
-      <p className={`text-3xl text-off_white ${main.className} `}>
+    <nav dir='rtl' className={`${new1.className}`} >
+  <div className="lg:mx-20 mx-4 px-10 flex    items-center justify-between  gap-y-2 py-4 bg-primary rounded-pixel mt-3 ">
+    <div className=' w-1/2 lg:w-auto flex  '>
+      <p className={` text-3xl text-off_white ${KofeFont.className} `}>
      ذِكْر
       </p>
     </div>
    <div>
-    <ul  className='hidden lg:flex  justify-between w-full lg:justify-center gap-x-4 text-primary text-2xl   '>
+    <ul  className='hidden lg:flex  justify-between w-full lg:justify-center gap-x-1 text-second text-2xl   '>
       {
           headBar.map((item)=> {return ( 
-          <li key={item.id} className='cursor-pointer hover:bg-primary  hover:text-second transition-all hover:px-5 py-1 hover:rounded-pixel'>
+          <li key={item.id} className='cursor-pointer hover:bg-second  font-bold  hover:bg-opacity-25 transition-all  text-lg lg:text-xl  px-3 py-1 hover:rounded-pixel'>
         <Link href={`${item.link}`}>
         {
           item.title

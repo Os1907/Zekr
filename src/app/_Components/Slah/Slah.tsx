@@ -5,6 +5,8 @@ import React from 'react'
 import localFont  from  'next/font/local'
 const number = localFont({ src: '../../../../public/Fonts/number.ttf' })
 const main = localFont({ src: '../../../../public/Fonts/main.ttf' })
+const hand = localFont({ src: '../../../..//public/Fonts/hand.ttf' })
+const new1 = localFont({ src: '../../../..//public/Fonts/New/arabic.ttf' })
 
 
 async function Slah() {
@@ -28,7 +30,7 @@ async function Slah() {
                 </div>
                 <div className='flex w-full justify-center '>
                     <p className='text-primary text-2xl font-medium flex items-center justify-center gap-x-2'>
-                        <span className={`mx-1 text-3xl font-semibold ${number.className} `}>
+                        <span className={`mx-1 text-3xl font-semibold ${new1.className} `}>
 
                             {
                                 Number(slahInfo?.data.date.hijri.day) 
@@ -36,7 +38,7 @@ async function Slah() {
                         </span>
                         من شهر 
                         { slahInfo?.data.date.hijri.month.ar }
-                        <span className={`mx-1 text-3xl font-semibold ${number.className}`}>
+                        <span className={`mx-1 text-3xl font-semibold ${new1.className}`}>
 
                             {
                                 slahInfo?.data.date.hijri.year
@@ -53,13 +55,13 @@ async function Slah() {
                             <p className=' text-lg lg:text-2xl  font-semibold'>
                                 {salah === 'Fajr' ? ' الفجر' : salah === 'Sunrise' ? 'الشروق' : salah === 'Dhuhr' ? ' الظهر' : salah === 'Asr' ? ' العصر' : salah === 'Maghrib' ? ' المغرب' : salah === 'Isha' ? ' العشاء' : null}
                             </p>
-                            <p className={` text-lg lg:text-2xl font-semibold ${number.className} `}>
+                            <p className={` text-lg lg:text-2xl font-semibold ${new1.className} `}>
 
                                 {
                                     Number(timeSalah.slice(0, 2)) > 12 ? ` ${timeSalah.slice(3, 5)} : ${Number(timeSalah.slice(0, 2))- 12}   ` : `${timeSalah}`
                                 }
 
-                                <span className={` mx-1 inline ${main.className} `}>
+                                <span className={` mx-1 inline ${new1.className} `}>
 
                                     {Number(timeSalah.slice(0, 2)) < 12 ? "ص" : "م"}
                                 </span>

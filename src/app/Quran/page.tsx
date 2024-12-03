@@ -11,6 +11,7 @@ import { BsBookmarkHeartFill } from 'react-icons/bs'
 import SwaraCard from '../_Components/SwraCard/SwaraCard'
 
 const main = localFont({ src: '../../../public/Fonts/main.ttf' })
+const new1 = localFont({ src: '../../../public/Fonts/New/arabic.ttf' })
 
 export default function Quraan() {
 
@@ -49,7 +50,7 @@ export default function Quraan() {
         <Link href={`/Quran/saved`}>
         <div className='w-full  flex justify-center mt-10 mx-auto'>
 
-          <p className={`w-3/4 relative rounded-pixel bg-second active:outline-0 text-primary2 border hover:scale-105  hover:border-second ${main.className} mx-auto text-2xl px-10 py-2 `}>
+          <p className={`w-3/4 relative rounded-pixel bg-second active:outline-0 text-primary2 border  hover:border-second/ ${main.className} mx-auto text-2xl px-10 py-2 `}>
             السور المحفوظه
             <span className='absolute -top-4 -left-3 text-7xl   my-3  '>
               <BsBookmarkHeartFill className='w-1/2 h-full text-primary ' />

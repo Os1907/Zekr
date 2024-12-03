@@ -17,7 +17,7 @@ export default function Text({item}:Iprop) {
             
             <p className=" mx-1 lg:mx-3 text-3xl lg:text-4xl my-2">{item?.content}</p>
             {item?.description ?<div className='bg-second px-1 lg:px-3 rounded-full my-1 lg:my-4'>
-              <p className='text-off_white text-sm lg:text-lg p-1'>{item?.description}</p>
+              <p className='text-primary text-sm lg:text-lg p-1'>{item?.description}</p>
             </div> : null
             
             
