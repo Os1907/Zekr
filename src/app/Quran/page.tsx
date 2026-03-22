@@ -1,7 +1,8 @@
 'use client'
 import React, { useEffect, useState } from 'react'
 import surah from '@/Api/Surah'
-import { Cairo, Amiri } from 'next/font/google'
+import { Cairo } from 'next/font/google'
+import localFont from 'next/font/local'
 import { Surah } from '@/Interface/Interfaces'
 import Link from 'next/link'
 import { useDispatch, useSelector } from 'react-redux'
@@ -11,7 +12,12 @@ import { BookmarkCheck, Search } from 'lucide-react'
 import SwaraCard from '../_Components/SwraCard/SwaraCard'
 
 const cairo = Cairo({ subsets: ['arabic'], weight: ['400', '600', '700', '900'] })
-const amiri = Amiri({ subsets: ['arabic'], weight: ['400', '700'] })
+const amiri = localFont({
+  src: [
+    { path: '../../fonts/Amiri-Regular.woff2', weight: '400' },
+    { path: '../../fonts/Amiri-Bold.woff2',    weight: '700' },
+  ],
+})
 
 type Filter = 'all' | 'Mecca' | 'Medina'
 
@@ -24,7 +30,7 @@ export default function Quraan() {
 
   useEffect(() => { surah().then(setAllSwar) }, [])
 
-  const displayed = allSwar.filter(item => {
+  const displayed = allSwar?.filter(item => {
     const ms = query === '' || item.name_translations.ar.includes(query)
     const mf = filter === 'all' || item.place === filter
     return ms && mf
@@ -53,7 +59,7 @@ export default function Quraan() {
             </h1>
           </div>
 
-          {allSwar.length > 0 && (
+          {allSwar?.length > 0 && (
             <span className="text-[11px] font-black px-2.5 py-1 shrink-0"
               style={{
                 background: 'var(--color-surface-2)',
@@ -118,7 +124,7 @@ export default function Quraan() {
 
       {/* ── GRID ── */}
       <div className="max-w-3xl mx-auto px-5 py-5">
-        {allSwar.length === 0 ? (
+        {allSwar?.length === 0 ? (
           <div className="grid grid-cols-2 lg:grid-cols-3 gap-2.5">
             {Array.from({ length: 12 }).map((_, i) => (
               <div key={i} className="animate-pulse"
@@ -128,13 +134,13 @@ export default function Quraan() {
         ) : (
           <>
             <div className="grid grid-cols-2 lg:grid-cols-3 gap-2.5">
-              {displayed.map(item => (
+              {displayed?.map(item => (
                 <SwaraCard key={item.number_of_surah} item={item}
                   saved={saved.includes(item.number_of_surah)}
                   onToggleSave={e => toggleSave(e, item.number_of_surah)} />
               ))}
             </div>
-            {displayed.length === 0 && (
+            {displayed?.length === 0 && (
               <p className="text-center text-sm py-20" style={{ color: 'var(--color-text-muted)' }}>
                 لا توجد نتائج لـ «{query}»
               </p>
