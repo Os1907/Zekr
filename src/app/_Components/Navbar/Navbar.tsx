@@ -1,100 +1,142 @@
 'use client'
-import Image from 'next/image'
-import React, { useState } from 'react'
-import { IoMenu } from 'react-icons/io5'
-import { CgMenuLeft } from "react-icons/cg";
+import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
-import localFont  from  'next/font/local'
-const main = localFont({ src: '../../../../public/Fonts/main.ttf' })
-const Quran = localFont({ src: '../../../../public/Fonts/taha2.ttf' })
-const KofeFont = localFont({ src: '../../../../public/Fonts/alsamt diwani.ttf' })
+import { usePathname } from 'next/navigation'
+import localFont from 'next/font/local'
+import { Home, Sun, Moon, BookOpen, Hash, BookHeart, Menu, X } from 'lucide-react'
+import ThemeSwitcher from '../ThemeSwitcher/ThemeSwitcher'
+
+const main    = localFont({ src: '../../../../public/Fonts/main.ttf' })
+const kofFont = localFont({ src: '../../../../public/Fonts/alsamt diwani.ttf' })
+
+const navLinks = [
+  { href: '/',            label: 'الرئيسية',       icon: Home       },
+  { href: '/Morning',     label: 'أذكار الصباح',   icon: Sun        },
+  { href: '/Evening',     label: 'أذكار المساء',   icon: Moon       },
+  { href: '/Tasbeh',      label: 'تسابيح',          icon: Hash       },
+  { href: '/ad3ia-quran', label: 'أدعية الأنبياء',  icon: BookHeart  },
+  { href: '/Quran',       label: 'القرآن الكريم',   icon: BookOpen   },
+]
 
 export default function Navbar() {
-  const [Action, setAction] = useState(true)
-  const headBar=[
-    {
-      link: '/',
-      title: '  الصفحة الرئيسية',
-      id:'HomePage'
-    }
-    ,
-    {
-     
-      link:"/Morning",
-      title:   " أذكار الصباح",
-      id:"mor1"
-    },
-    {
-      link:"/Evening",
-      title:    " أذكار المساء",
-      id:"night2"
-    },
-    {
-      link:"/ad3ia-quran",
-      title:   " أدعية الآنبياء" ,
-      id:"prayer"
-    },
-    {
-      link:"/Quran",
-      title:   " القرآن الكريم" ,
-      id:"quran1"
-    },
-  ]
+  const [open, setOpen]         = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+  const pathname                = usePathname()
+
+  useEffect(() => {
+    const handler = () => setScrolled(window.scrollY > 10)
+    window.addEventListener('scroll', handler)
+    return () => window.removeEventListener('scroll', handler)
+  }, [])
+
+  useEffect(() => { setOpen(false) }, [pathname])
+
   return (
-    <nav dir='rtl' className={`${main.className}`} >
-  <div className="lg:mx-20 mx-4 px-10 flex    items-center justify-between  gap-y-2 py-4 bg-second rounded-pixel mt-3 ">
-    <div className=' w-1/2 lg:w-auto flex '>
-      <p className={`text-3xl text-off_white ${main.className} `}>
-     ذِكْر
-      </p>
-    </div>
-   <div>
-    <ul  className='hidden lg:flex  justify-between w-full lg:justify-center gap-x-4 text-primary text-2xl   '>
-      {
-          headBar.map((item)=> {return ( 
-          <li key={item.id} className='cursor-pointer hover:bg-primary  hover:text-second transition-all hover:px-5 py-1 hover:rounded-pixel'>
-        <Link href={`${item.link}`}>
-        {
-          item.title
-        }
-</Link>
-      </li>
-           ) })
-      }
-    </ul>
-    {
-      Action ?<IoMenu onClick={() => setAction(!Action)} className='text-primary text-3xl cursor-pointer lg:hidden'/> :
-    <CgMenuLeft onClick={() => setAction(!Action)} className='text-primary text-3xl cursor-pointer lg:hidden'/>
- }
-   </div>
-   
-  </div>
-    {
-      Action ? null : <div className='lg:hidden  bg-second text-primary  rounded-pixel mt-2 mx-4 transition-all overflow-hidden  mb-5 pb-2 '>
+    <>
+      <header
+        className={`sticky top-0 z-50 transition-shadow duration-300 ${
+          scrolled ? 'shadow-lg' : ''
+        }`}
+        style={{ background: 'var(--color-nav)' }}
+      >
+        <div className={`${main.className} max-w-7xl mx-auto px-4 lg:px-10`}>
+          <div className="flex items-center justify-between h-16 lg:h-[72px]">
 
-    <ul className=' flex justify-center flex-col items-center gap-y-4 py-2 '>
-    {
-          headBar.map((item)=> { return (  <li key={item.id} onClick={() => setAction(!Action)} className='cursor-pointer text-2xl py-2 font-medium    pb-2  hover:text-second hover:bg-primary transition-all px-3 hover:rounded-pixel hover:w-3/6 hover:text-center '>
-        <Link href={`${item.link}`}>
-        {
-          item.title
-        }
-</Link>
-      </li>
-           ) }
-          )
-      }
-        </ul>
+            {/* Brand */}
+            <Link href="/" className="flex items-center gap-3 group">
+              <span
+                className="hidden sm:flex size-9 rounded-xl items-center justify-center text-lg transition-transform group-hover:scale-110"
+                style={{
+                  background: 'var(--color-nav-accent-bg)',
+                  color: 'var(--color-nav-text-active)',
+                  border: '1px solid rgba(255,255,255,0.08)',
+                }}
+              >
+                
+              </span>
+              <span
+                className={`${kofFont.className} text-4xl lg:text-5xl font-bold tracking-wide`}
+                style={{ color: 'var(--color-nav-text-active)' }}
+              >
+                ذِكْر
+              </span>
+            </Link>
 
+            {/* Desktop links */}
+            <nav className="hidden lg:flex items-center gap-1">
+              {navLinks.map((link) => {
+                const active = pathname === link.href
+                const Icon = link.icon
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className={`nav-link flex items-center gap-2 text-[17px] px-4 py-2.5 rounded-xl transition-all duration-200 ${
+                      active
+                        ? 'font-semibold'
+                        : ''
+                    }`}
+                    style={{
+                      background: active ? 'var(--color-nav-accent-bg)' : 'transparent',
+                      color: active ? 'var(--color-nav-text-active)' : 'var(--color-nav-text)',
+                    }}
+                  >
+                    <Icon size={18} strokeWidth={active ? 2.5 : 2} />
+                    {link.label}
+                  </Link>
+                )
+              })}
+            </nav>
 
-    </div>
-    }
-    
-</nav>
+            {/* Right side: theme switcher + mobile burger */}
+            <div className="flex items-center gap-2">
+              <ThemeSwitcher />
+              
+              {/* Mobile burger */}
+              <button
+                onClick={() => setOpen(!open)}
+                aria-label="القائمة"
+                className="lg:hidden flex items-center justify-center w-10 h-10 rounded-xl transition-all"
+                style={{
+                  background: open ? 'rgba(255,255,255,0.12)' : 'transparent',
+                  color: 'var(--color-nav-text)',
+                }}
+              >
+                {open ? <X size={22} /> : <Menu size={22} />}
+              </button>
+            </div>
+          </div>
+        </div>
 
-
-
-
-
+        {/* Mobile Drawer */}
+        <div
+          className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out ${open ? 'max-h-[520px] opacity-100' : 'max-h-0 opacity-0'}`}
+          style={{ background: 'rgba(0,0,0,0.2)', backdropFilter: 'blur(12px)' }}
+        >
+          <div className="mx-6 h-px mb-2" style={{ background: 'linear-gradient(90deg, transparent, var(--color-nav-text-active), transparent)', opacity: 0.3 }} />
+          <nav className="flex flex-col gap-1 px-4 pb-4">
+            {navLinks.map((link) => {
+              const active = pathname === link.href
+              const Icon = link.icon
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`${main.className} flex items-center gap-3 text-xl py-3.5 px-5 rounded-xl text-right transition-all duration-200`}
+                  style={{
+                    background: active ? 'var(--color-nav-accent-bg)' : 'transparent',
+                    color: active ? 'var(--color-nav-text-active)' : 'var(--color-nav-text)',
+                    fontWeight: active ? 600 : 400,
+                  }}
+                >
+                  <Icon size={20} strokeWidth={active ? 2.5 : 2} />
+                  {link.label}
+                </Link>
+              )
+            })}
+          </nav>
+        </div>
+      </header>
+    </>
   )
 }

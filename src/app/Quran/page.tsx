@@ -1,154 +1,147 @@
 'use client'
 import React, { useEffect, useState } from 'react'
 import surah from '@/Api/Surah'
-import localFont from 'next/font/local'
+import { Cairo, Amiri } from 'next/font/google'
 import { Surah } from '@/Interface/Interfaces'
 import Link from 'next/link'
 import { useDispatch, useSelector } from 'react-redux'
-import { store, empty, remove } from '@/Rdeux/save'
+import { store, remove } from '@/Rdeux/save'
 import { RootState } from '@/Rdeux/store'
-import { BsBookmarkHeartFill } from 'react-icons/bs'
+import { BookmarkCheck, Search } from 'lucide-react'
 import SwaraCard from '../_Components/SwraCard/SwaraCard'
 
-const main = localFont({ src: '../../../public/Fonts/main.ttf' })
+const cairo = Cairo({ subsets: ['arabic'], weight: ['400', '600', '700', '900'] })
+const amiri = Amiri({ subsets: ['arabic'], weight: ['400', '700'] })
+
+type Filter = 'all' | 'Mecca' | 'Medina'
 
 export default function Quraan() {
-
-  const [swar, setSwar] = useState<Surah[]>([])
   const [allSwar, setAllSwar] = useState<Surah[]>([])
+  const [query,   setQuery]   = useState('')
+  const [filter,  setFilter]  = useState<Filter>('all')
   const dispatch = useDispatch()
-  const count = useSelector((state: RootState) => state.save);
-  const userSearch = (userInput: string) => {
-    if (userInput.trim() === "") {
-      setSwar(allSwar)
-    } else {
-      const filtered = allSwar.filter((item: Surah) => item.name_translations.ar.includes(userInput))
-      setSwar(filtered)
-    }
+  const saved    = useSelector((state: RootState) => state.save)
+
+  useEffect(() => { surah().then(setAllSwar) }, [])
+
+  const displayed = allSwar.filter(item => {
+    const ms = query === '' || item.name_translations.ar.includes(query)
+    const mf = filter === 'all' || item.place === filter
+    return ms && mf
+  })
+
+  const toggleSave = (e: React.MouseEvent, num: number) => {
+    e.preventDefault()
+    saved.includes(num)
+      ? dispatch(remove(saved.findIndex(n => n === num)))
+      : dispatch(store(num))
   }
-
-  const fetch = async () => {
-    const data = await surah()
-    setSwar(data)
-    setAllSwar(data)
-  }
-
-  useEffect(() => {
-    fetch()
-
-  }, [])
-  useEffect(() => {
-  }, [count]);
 
   return (
-    <>
+    <div dir='rtl' className={`${cairo.className} min-h-screen`} style={{ background: 'var(--color-bg)' }}>
 
+      {/* ── HEADER ── */}
+      <header className="px-5 pt-8 pb-5 max-w-3xl mx-auto">
 
+        {/* Title block */}
+        <div className="flex items-end justify-between gap-4 mb-5">
+          <div>
+          
+            <h1 className={`${amiri.className} text-3xl font-bold leading-none`}
+              style={{ color: 'var(--color-text)' }}>
+              القرآن الكريم
+            </h1>
+          </div>
 
-      <div dir='rtl' className='min-h-screen'>
-        <Link href={`/Quran/saved`}>
-        <div className='w-full  flex justify-center mt-10 mx-auto'>
-
-          <p className={`w-3/4 relative rounded-pixel bg-second active:outline-0 text-primary2 border hover:scale-105  hover:border-second ${main.className} mx-auto text-2xl px-10 py-2 `}>
-            السور المحفوظه
-            <span className='absolute -top-4 -left-3 text-7xl   my-3  '>
-              <BsBookmarkHeartFill className='w-1/2 h-full text-primary ' />
+          {allSwar.length > 0 && (
+            <span className="text-[11px] font-black px-2.5 py-1 shrink-0"
+              style={{
+                background: 'var(--color-surface-2)',
+                border: '1px solid var(--color-border)',
+                borderRadius: 'var(--radius)',
+                color: 'var(--color-text-muted)',
+              }}>
+              {displayed.length} / 114
             </span>
-          </p>
-
-        </div>
-        </Link>
-        <div className='w-full flex justify-center  my-5 lg:my-10'>
-
-          <input onKeyUp={(e) => userSearch(e.currentTarget.value)} placeholder='ماذا تريد أن تقرأ  ؟' className={`w-3/4 rounded-pixel bg-primary2 active:outline-0 text-second border  hover:border-second ${main.className} mx-auto text-2xl px-10 py-2 focus:outline-0  focus:border-second focus:scale-110  placeholder:text-second`} />
+          )}
         </div>
 
-        <div className='grid grid-cols-1 lg:grid-cols-3 lg:mx-20 mx-4 gap-x-10 gap-y-5 '>
-          {
-            swar?.map((item: Surah) => {
-              return (
-                <div key={item.number_of_surah} className='relative'>
-               
-                <SwaraCard  item={item} /> 
-                <div className='absolute -top-4 left-10 text-7xl   my-3 cursor-pointer hover:scale-125 '>
-                   {
-                     count.includes(item.number_of_surah)
-                       ? <BsBookmarkHeartFill
-                         onClick={() => {
-                           dispatch(remove(count.findIndex((Number) => Number == item.number_of_surah)));
-                         }}
-                         className='w-1/2 h-full text-second  hover:left-9 transition-all'
-                       />
-                       : <BsBookmarkHeartFill
-                         onClick={() => {
-                           dispatch(store(item.number_of_surah));
-                           
-                         }}
-                         className='w-1/2 h-full text-primary  hover:left-9 transition-all'
-                       />
-                   }
-
-                 </div>
-                </div>
-
-
-              );
-            })
-          }
-
+        {/* Search bar */}
+        <div className="relative mb-3">
+          <Search size={13} className="absolute right-3 top-1/2 -translate-y-1/2"
+            style={{ color: 'var(--color-text-muted)' }} />
+          <input value={query} onChange={e => setQuery(e.target.value)}
+            placeholder="ابحث عن سورة..."
+            className="w-full pr-8 pl-3 py-2.5 text-sm outline-none"
+            style={{
+              background: 'var(--color-surface)',
+              border: '1px solid var(--color-border)',
+              borderRadius: 'var(--radius)',
+              color: 'var(--color-text)',
+            }}
+          />
         </div>
 
+        {/* Filter + saved row */}
+        <div className="flex items-center gap-2 flex-wrap">
+          {(['all', 'Mecca', 'Medina'] as Filter[]).map((f, i) => (
+            <button key={f} onClick={() => setFilter(f)}
+              className="px-3 py-1.5 text-xs font-bold transition-all"
+              style={{
+                borderRadius: 'var(--radius)',
+                border: `1px solid ${filter === f ? 'var(--color-accent)' : 'var(--color-border)'}`,
+                background: filter === f ? 'var(--color-accent)' : 'var(--color-surface)',
+                color: filter === f ? '#fff' : 'var(--color-text-muted)',
+              }}>
+              {['الكل', 'مكية', 'مدنية'][i]}
+            </button>
+          ))}
 
+          {saved.length > 0 && (
+            <Link href="/Quran/saved"
+              className="mr-auto flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold transition-opacity hover:opacity-75"
+              style={{
+                borderRadius: 'var(--radius)',
+                border: '1px solid var(--color-accent)',
+                color: 'var(--color-accent)',
+                background: 'var(--color-surface)',
+              }}>
+              <BookmarkCheck size={12} />
+              {saved.length} محفوظة
+            </Link>
+          )}
+        </div>
+      </header>
 
+      {/* divider */}
+      <div style={{ height: 1, background: 'var(--color-border)', marginBottom: 0 }} />
 
-
-
-
-
+      {/* ── GRID ── */}
+      <div className="max-w-3xl mx-auto px-5 py-5">
+        {allSwar.length === 0 ? (
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-2.5">
+            {Array.from({ length: 12 }).map((_, i) => (
+              <div key={i} className="animate-pulse"
+                style={{ height: 72, background: 'var(--color-surface)', borderRadius: 'var(--radius)', border: '1px solid var(--color-border)' }} />
+            ))}
+          </div>
+        ) : (
+          <>
+            <div className="grid grid-cols-2 lg:grid-cols-3 gap-2.5">
+              {displayed.map(item => (
+                <SwaraCard key={item.number_of_surah} item={item}
+                  saved={saved.includes(item.number_of_surah)}
+                  onToggleSave={e => toggleSave(e, item.number_of_surah)} />
+              ))}
+            </div>
+            {displayed.length === 0 && (
+              <p className="text-center text-sm py-20" style={{ color: 'var(--color-text-muted)' }}>
+                لا توجد نتائج لـ «{query}»
+              </p>
+            )}
+          </>
+        )}
       </div>
-    </>
-    
+    </div>
   )
 }
-{/* 
-  <div key={item.number_of_surah} className='relative'>
-                //   <Link href={`/Quran/${item.number_of_surah}`}>
-                //     <div className={`text-second text-2xl col-span-1 cursor-pointer bg-primary2 border hover:border-zinc-800 transition-all group px-3 lg:py-4 py-1 rounded-pixel ${Quran.className}`}>
-                //       <div className='flex items-center justify-between b'>
-                //         <div className='flex items-center'>
-                //           <div className='flex size-6 lg:size-8 mr-1 items-center bg-primary rounded-md group-hover:bg-second group-hover:text-primary2 rotate-45 justify-center transition-all'>
-                //             <span className={`-rotate-45 pt-2 relative z-10 ${number.className} text-2xl font-medium`}>
-                //               {item.number_of_surah}
-                //             </span>
-                //           </div>
-                //           <p className='mx-5 text-4xl'>
-                //             سورة {item.name_translations.ar}
-                //           </p>
-                //         </div>
-
-                //         <p className={`${number.className} text-2xl group-hover:text-second transition-all flex items-center gap-x-2 font-medium`}>
-                //           {item.number_of_ayah} <span className={`${Quran.className} text-lg`}>آيات</span>
-                //         </p>
-                //       </div>
-                //     </div>
-                //   </Link>
-                //   <div className='absolute -top-4 left-10 text-7xl   my-3 cursor-pointer hover:scale-125 '>
-                //     {
-                //       count.includes(item.number_of_surah)
-                //         ? <BsBookmarkHeartFill
-                //           onClick={() => {
-                //             dispatch(remove(count.findIndex((Number) => Number == item.number_of_surah)));
-                //           }}
-                //           className='w-1/2 h-full text-second  hover:left-9 transition-all'
-                //         />
-                //         : <BsBookmarkHeartFill
-                //           onClick={() => {
-                //             dispatch(store(item.number_of_surah));
-                //           }}
-                //           className='w-1/2 h-full text-primary hover:text-second hover:left-9 transition-all'
-                //         />
-                //     }
-
-                //   </div>
-                // </div>
-   */}

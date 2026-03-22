@@ -1,15 +1,5 @@
-import React from 'react'
-import Item from '../_Components/Item/Item'
-
-export default function page() {
-  return (
-    <>
-    
-    
-    <Item/>
-    
-    
-    
-    </>
-  )
+'use client'
+import AzkarLayout from '../_Components/AzkarLayout/AzkarLayout'
+export default function TasbehPage() {
+  return <AzkarLayout pathName="Tasbeh" title="تسابيح" subtitle="بذكر الله تطمئن القلوب" />
 }

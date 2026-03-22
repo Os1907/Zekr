@@ -1,16 +1,20 @@
-
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
+import { Cairo } from 'next/font/google'
 import "./globals.css";
-import Navbar from "./_Components/Navbar/Navbar";
 import ReduxProvider from "@/Rdeux/Provider";
+import ThemeProvider from "@/context/ThemeContext";
+import FloatingThemeToggle from "./_Components/ThemeToggle/ThemeToggle";
 
-const inter = Inter({ subsets: ["latin"] });
+const cairo = Cairo({ 
+  subsets: ['arabic'],
+  weight: ['300', '400', '500', '600', '700', '800'],
+  variable: '--font-main',
+  display: 'swap',
+})
 
-
-const APP_NAME = "ذِكر";
+const APP_NAME = "ذكر";
 const APP_DEFAULT_TITLE = "تطبيق أذكار المسلم";
-const APP_TITLE_TEMPLATE = "ذِكر";
+const APP_TITLE_TEMPLATE = "ذكر";
 const APP_DESCRIPTION = "تطبيق شامل لأذكار المسلم لمساعدتك على الذكر في حياتك اليومية.";
 
 export const metadata: Metadata = {
@@ -49,34 +53,27 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#FFFFFF",
+  themeColor: "#1a5c3a",
 };
-// export const metadata = {
-//   title: "ذِكر",
-//   description: "تطبيق شامل لأذكار المسلم لمساعدتك على الذكر في حياتك اليومية.",
-//   manifest: "/manifest.json",
-//   keywords: ["Muslim Azkar"],
-//   viewport: "minimum-scale=1, initial-scale=1, width=device-width, shrink-to-     fit=no, viewport-fit=cover",
-// };
-
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  
   return (
-    <html lang="en">
-       <head>
-        <link rel="icon" href="/public/finalogo.png" />
-      </head>
-      <body dir='rtl'  className={inter.className}>
-      <Navbar/>
-      <ReduxProvider>
-        {children}
-      </ReduxProvider>
-        </body>
+    <html lang="ar" dir="rtl" data-theme="light" suppressHydrationWarning>
+      <body className={`${cairo.variable} antialiased`}>
+        <ReduxProvider>
+          <ThemeProvider>
+            <FloatingThemeToggle />
+            <main>
+              {children}
+            </main>
+          
+          </ThemeProvider>
+        </ReduxProvider>
+      </body>
     </html>
   );
 }

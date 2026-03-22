@@ -1,86 +1,96 @@
 'use client'
 import React, { useState } from 'react'
-import { Iparams, Surah } from '@/Interface/Interfaces'
+import { Surah } from '@/Interface/Interfaces'
 import localFont from 'next/font/local'
+import { Cairo } from 'next/font/google'
+import { Minus, Plus } from 'lucide-react'
 
-const main = localFont({ src: '../../../../public/Fonts/main.ttf' })
-const taha = localFont({ src: '../../../../public/Fonts/taha.ttf' })
-const number = localFont({ src: '../../../../public/Fonts/number.ttf' })
-const taha3 = localFont({ src: '../../../../public/Fonts/taha3.ttf' })
+const cairo = Cairo({ subsets: ['arabic'], weight: ['600', '700'] })
 const quran = localFont({ src: '../../../../public/Fonts/New/arabic3.ttf' })
 
 interface IsurahBox {
-    data: Surah
-    params: number
+  data: Surah
+  params: number
 }
 
-export default function SurahBox(props: IsurahBox) {
-    const { data, params } = props
-    const [value, setValue] = useState(25);
-    const [color, setColor] = useState("#0d0d0d"); 
+export default function SurahBox({ data, params }: IsurahBox) {
+  const [fontSize, setFontSize] = useState(26)
 
-    const handleFontSizeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setValue(e.target.valueAsNumber);
-    };
+  return (
+    <div className="pb-10">
+      {/* Controls */}
+      <div className={`${cairo.className} flex items-center gap-3 mb-5`}
+        style={{
+          padding: '10px 14px',
+          background: 'var(--color-surface)',
+          border: '1px solid var(--color-border)',
+          borderRadius: 'var(--radius)',
+        }}>
+        <span className="text-xs font-bold" style={{ color: 'var(--color-text-muted)' }}>حجم الخط</span>
+        <button onClick={() => setFontSize(Math.max(14, fontSize - 2))}
+          className="w-7 h-7 flex items-center justify-center transition-opacity hover:opacity-60"
+          style={{
+            borderRadius: 8,
+            border: '1px solid var(--color-border)',
+            background: 'var(--color-surface-2)',
+            color: 'var(--color-text)',
+          }}>
+          <Minus size={12} />
+        </button>
+        <span className="text-sm font-black w-7 text-center" style={{ color: 'var(--color-accent)' }}>
+          {fontSize}
+        </span>
+        <button onClick={() => setFontSize(Math.min(64, fontSize + 2))}
+          className="w-7 h-7 flex items-center justify-center transition-opacity hover:opacity-60"
+          style={{
+            borderRadius: 8,
+            border: '1px solid var(--color-border)',
+            background: 'var(--color-surface-2)',
+            color: 'var(--color-text)',
+          }}>
+          <Plus size={12} />
+        </button>
+      </div>
 
-    const handleColorChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setColor(e.target.value);
-    };
+      {/* Quran text */}
+      <div className={`${quran.className} text-center`}
+        style={{
+          fontSize: `${fontSize}px`,
+          color: 'var(--color-text)',
+          lineHeight: 2.8,
+          padding: '28px 20px',
+          background: 'var(--color-surface)',
+          border: '1px solid var(--color-border)',
+          borderRadius: 'var(--radius)',
+        }}>
+        {/* Bismillah */}
+        {params != 9 && (
+          <p className="block text-center mb-6 pb-5"
+            style={{
+              fontSize: `${Math.max(fontSize, 28)}px`,
+              borderBottom: '1px solid var(--color-border)',
+              color: 'var(--color-accent)',
+            }}>
+            بِسْمِ اللَّـهِ الرَّحْمَنِ الرَّحِيمِ
+          </p>
+        )}
 
-    return (
-        <>
-            
-            <div className="flex items-center justify-center space-x-4 mt-8">
-                <label htmlFor="range-slider" className="text-primary font-medium text-2xl">
-                    <span className={` ${main.className} text-second mx-2`}>  حجم الخط للقراءة  </span>
-                </label>
-                <input
-                    id="range-slider"
-                    type="range"
-                    min="10"
-                    max="100"
-                    step={5}
-                    value={value}
-                    onChange={handleFontSizeChange}
-                    className="w-1/2 border-0 h-1 bg-primary rounded-lg cursor-pointer accent-second focus-visible:border-0 hover:border-0"
-                />
-                <span className={` ${main.className} text-second mx-2 text-2xl`}>{value} </span>
-            </div>
-
-            <div className="flex items-center justify-center space-x-4 mt-4">
-                <label htmlFor="color-picker" className="text-primary font-medium">
-                    <span className={` ${main.className} text-second mx-2`}> لون الخط</span>
-                </label>
-                <input
-                    id="color-picker"
-                    type="color"
-                    value={color}
-                    onChange={handleColorChange}
-                    className="cursor-pointer rounded-full bg-primary"
-                />
-            </div>
-
-            <div style={{ fontSize: `${value}px`, color: color }} className={`${quran.className} text-center mt-3 lg:mt-8 lg:mx-32 border-zinc-800 border-y py-5 rounded-2xl`}
-            
-            >
-                <div>
-                {
-                    params != 9 ? <p style={{ fontSize: `${value}px`, color: color }} className={` lg:my-10 text-center`}>
-                        ﴿  بِسْمِ اللَّـهِ الرَّحْمَـٰنِ الرَّحِيمِ   ﴾
-                    </p> : <></>
-                }
-            </div>
-                {
-                    data?.verses?.map((item, index) => (
-                        <p key={index} className={` text-center inline-block my-3`}>
-                            {index === 0 && params != 9 ? item?.text.slice(39) : item.text}
-                            <span style={{ fontSize: `${value - 5}px` }} className={` text-second inline-block`}>
-                                ﴿ {item?.number} ﴾
-                            </span>
-                        </p>
-                    ))
-                }
-            </div>
-        </>
-    )
+        {/* Verses */}
+        {data?.verses?.map((item, index) => (
+          <span key={index} className="inline">
+            {index === 0 && params != 9 ? item?.text.slice(39) : item.text}
+            <span className={`${cairo.className} inline-block mx-1.5 font-black`}
+              style={{
+                fontSize: `${Math.max(fontSize - 8, 13)}px`,
+                color: 'var(--color-accent)',
+                opacity: 0.7,
+              }}>
+              {item?.number}
+            </span>
+            {' '}
+          </span>
+        ))}
+      </div>
+    </div>
+  )
 }

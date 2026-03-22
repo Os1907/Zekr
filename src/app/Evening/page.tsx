@@ -1,12 +1,5 @@
-import React from 'react';
-import Item from '../_Components/Item/Item';
-
-
-export default function EveningZekr() {
-
-  return (
-    <>
-      <Item/>
-    </>
-  );
+'use client'
+import AzkarLayout from '../_Components/AzkarLayout/AzkarLayout'
+export default function EveningPage() {
+  return <AzkarLayout pathName="Evening" title="أذكار المساء" subtitle="اختم يومك بذكر الله" />
 }
